@@ -8,7 +8,7 @@ from pathlib import Path
 import invoke
 
 DEFAULT_BRANCH_COUNT = 4
-LOCAL_LINKS = ("_stool", ".env", ".venv", "tasks.py")
+LOCAL_LINKS = ("_stool", ".env", ".venv", "tasks.py", "returns/static/ui/_build")
 
 
 def _latest_branches(number: int) -> str:
@@ -82,6 +82,7 @@ def _link_local_paths(root: Path, worktree_path: Path) -> list[str]:
         target = worktree_path / name
         if not source.exists() or target.exists() or target.is_symlink():
             continue
+        target.parent.mkdir(parents=True, exist_ok=True)
         target.symlink_to(source, target_is_directory=source.is_dir())
         linked.append(name)
     return linked
@@ -97,7 +98,12 @@ def _create_worktree(branch: str, path: str | None = None) -> str:
 
     existing_path = _linked_worktree_for_branch(branch)
     if existing_path is not None:
-        return f"{branch} already has a worktree at {existing_path}\n"
+        linked = _link_local_paths(root, existing_path)
+        linked_text = ", ".join(linked) if linked else "none"
+        return (
+            f"{branch} already has a worktree at {existing_path}\n"
+            f"linked local paths: {linked_text}\n"
+        )
 
     command = ["git", "worktree", "add"]
     if not _branch_exists(branch):
