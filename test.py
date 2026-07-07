@@ -28,6 +28,17 @@ def e2e(ctx):
 
 
 @invoke.task
+def returns_snapshot(ctx, create_db=False, extra_args: str = ""):
+    """Update Returns view snapshots."""
+    ctx.run(
+        f"pytest {'--create-db' if create_db else ''} "
+        f"tests/returns/views --snapshot-update -n0 {extra_args}",
+        pty=True,
+        echo=True,
+    )
+
+
+@invoke.task
 def test(ctx):
     """Run test without returns and e2e"""
     ctx.run(

@@ -13,7 +13,7 @@ def ngrok(ctx):
 @invoke.task
 def build(ctx):
     with ctx.cd(APP_DIR):
-        ctx.run("npm run build")
+        ctx.run("npm run build", echo=True)
 
 @invoke.task
 def link(ctx):
@@ -21,6 +21,22 @@ def link(ctx):
         ctx.run('shopify app config link --organization "Kumar\'s Dev store (Dev Dashboard)"', echo=True)
 
 @invoke.task
-def dev(ctx):
+def ci(ctx):
     with ctx.cd(APP_DIR):
-        ctx.run('shopify app dev', pty=True)
+        ctx.run("npm ci", pty=True)
+
+@invoke.task
+def dev(ctx, config="kumar"):
+    with ctx.cd(APP_DIR):
+        ctx.run('npm run dev -- --config kumar', pty=True, echo=True)
+
+@invoke.task
+def test(ctx):
+    with ctx.cd(APP_DIR):
+        ctx.run('npm run test', pty=True, echo=True)
+
+
+@invoke.task
+def validate(ctx):
+    with ctx.cd(APP_DIR):
+        ctx.run('shopify app config validate --json', pty=True, echo=True)

@@ -2,9 +2,9 @@ import invoke
 
 @invoke.task
 def fix_postgres(ctx):
-    ctx.run("brew services stop postgresql@14", pty=True)
-    ctx.run("rm /opt/homebrew/var/postgresql@14/postmaster.pid", pty=True)
-    ctx.run("brew services start postgresql@14", pty=True)
+    ctx.run("brew services stop postgresql@14", pty=True, echo=True)
+    ctx.run("rm /opt/homebrew/var/postgresql@14/postmaster.pid", pty=True, echo=True)
+    ctx.run("brew services start postgresql@14", pty=True, echo=True)
 
 @invoke.task
 def setup_atlas(ctx):

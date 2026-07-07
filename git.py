@@ -8,7 +8,7 @@ from pathlib import Path
 import invoke
 
 DEFAULT_BRANCH_COUNT = 4
-LOCAL_LINKS = ("_stool", ".env", ".venv", "tasks.py", "returns/static/ui/_build")
+LOCAL_LINKS = ("_stool", ".env", ".venv", "tasks.py", "returns/static/ui/_build", "docs/_visualizations")
 
 
 def _latest_branches(number: int) -> str:
