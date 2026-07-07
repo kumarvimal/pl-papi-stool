@@ -21,6 +21,11 @@ def link(ctx):
         ctx.run('shopify app config link --organization "Kumar\'s Dev store (Dev Dashboard)"', echo=True)
 
 @invoke.task
-def dev(ctx):
+def dev(ctx, config="kumar"):
     with ctx.cd(APP_DIR):
-        ctx.run('shopify app dev', pty=True)
+        ctx.run('npm run dev -- --config kumar', pty=True)
+
+@invoke.task
+def test(ctx):
+    with ctx.cd(APP_DIR):
+        ctx.run('npm run test', pty=True)
