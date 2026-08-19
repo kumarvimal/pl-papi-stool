@@ -1,0 +1,41 @@
+{
+  "sku": "SKU-RED-M",
+  "product_id": "PROD-TSHIRT",
+  "product_name": "T-Shirt",
+  "currency": "EUR",
+  "variants": [
+    {
+      "id": "VAR-RED-M",
+      "sku": "SKU-RED-M",
+      "title": "Red / M",
+      "price": "29.99",
+      "inventoryQuantity": 5,
+      "options": {
+        "color": "Red",
+        "size": "M"
+      }
+    },
+    {
+      "id": "VAR-BLUE-M",
+      "sku": "SKU-BLUE-M",
+      "title": "Blue / M",
+      "price": "29.99",
+      "inventoryQuantity": 5,
+      "options": {
+        "color": "Blue",
+        "size": "M"
+      }
+    },
+    {
+      "id": "VAR-GREEN-L",
+      "sku": "SKU-GREEN-L",
+      "title": "Green / L",
+      "price": "39.99",
+      "inventoryQuantity": 5,
+      "options": {
+        "color": "Green",
+        "size": "L"
+      }
+    }
+  ]
+}

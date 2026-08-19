@@ -1,0 +1,41 @@
+{
+  "order_number": "c",
+  "external_reference": "V4-INLINE-EXCHANGE-DEMO",
+  "client_key": "inline-exchange-demo",
+  "destination_country_iso3": "DEU",
+  "language_iso2": "en",
+  "shipping_address": {
+    "first_name": "Max",
+    "last_name": "Mustermann",
+    "address_line": "Karl-Liebknecht-Strasse 5",
+    "postal_code": "10178",
+    "city": "Berlin",
+    "country_iso3": "DEU",
+    "phone": "+49123456789"
+  },
+  "recipient_email": "inline-exchange@example.com",
+  "recipient_name": "Max Mustermann",
+  "customer_number": "INLINE-EXCHANGE-CUSTOMER",
+  "payment_method": "",
+  "order_total_amount": "29.99",
+  "order_tax_amount": "4.79",
+  "order_net_amount": "25.20",
+  "order_currency": "EUR",
+  "order_date": "2026-08-01T10:00:00+00:00",
+  "announced_delivery_date": "2026-08-05",
+  "timezone": "Europe/Berlin",
+  "articles_order": [
+    {
+      "line_item_id": "order-line-1",
+      "product_id": "PROD-TSHIRT",
+      "variant_id": "VAR-RED-M",
+      "sku": "SKU-RED-M",
+      "article_name": "T-Shirt",
+      "color": "Red",
+      "size": "M",
+      "quantity": 1,
+      "unit_price": "29.99",
+      "unit_price_original": "29.99"
+    }
+  ]
+}

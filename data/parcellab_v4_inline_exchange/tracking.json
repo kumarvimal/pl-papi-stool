@@ -1,0 +1,31 @@
+{
+  "tracking_number": "V4-INLINE-EXCHANGE-TRACKING",
+  "courier": "ups",
+  "client_key": "inline-exchange-demo",
+  "order_number": "V4-INLINE-EXCHANGE-1",
+  "recipient_email": "inline-exchange@example.com",
+  "recipient_postal_code": "10178",
+  "destination_country_iso3": "DEU",
+  "language_iso2": "en",
+  "timezone": "Europe/Berlin",
+  "is_return": false,
+  "security_hash": "inline-exchange-demo",
+  "activity_monitor_current_stage": "Delivered",
+  "activity_monitor_current_delivery_status": "delivered",
+  "reporting_delivery_date": "2026-08-05",
+  "articles": [
+    {
+      "line_item_id": "fulfillment-line-1",
+      "order_item_id": "order-line-1",
+      "product_id": "PROD-TSHIRT",
+      "variant_id": "VAR-RED-M",
+      "sku": "SKU-RED-M",
+      "article_name": "T-Shirt",
+      "color": "Red",
+      "size": "M",
+      "quantity": 1,
+      "unit_price": "29.99",
+      "unit_price_original": "29.99"
+    }
+  ]
+}
