@@ -1,4 +1,18 @@
+import shlex
+
 import invoke
+
+
+@invoke.task
+def readonly_prod(ctx, port: int = 15432, duration: str = "1h"):
+    """Connect to the read-only production Product API database through Hoop."""
+    ctx.run(
+        "parcellab-infra --env prod proxy connect readonly-product-api-prod "
+        f"--port {int(port)} --duration {shlex.quote(duration)}",
+        pty=True,
+        echo=True,
+    )
+
 
 @invoke.task
 def fix_postgres(ctx):
