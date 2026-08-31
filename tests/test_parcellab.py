@@ -24,7 +24,7 @@ def test_inline_exchange_seed_payloads_are_consistent() -> None:
 def test_seed_task_runs_as_module_to_avoid_stdlib_module_shadowing() -> None:
     context = Mock()
 
-    seed_inline_exchange.body(context, 2, "dev")  # type: ignore
+    seed_inline_exchange.body(context, 2, "dev")  # type: ignore[attr-defined]
 
     context.run.assert_called_once_with(
         "uv run python -m _stool.parcellab --account-id 2 --portal-code dev",
@@ -38,7 +38,9 @@ def test_start_dynamodb_uses_configured_installation(tmp_path) -> None:
     (tmp_path / "DynamoDBLocal_lib").mkdir()
     context = Mock()
 
-    start_dynamodb.body(context, str(tmp_path), 8001)  # type: ignore
+    start_dynamodb.body(  # type: ignore[attr-defined]
+        context, str(tmp_path), 8001
+    )
 
     context.run.assert_called_once_with(
         f"java -Djava.library.path={tmp_path}/DynamoDBLocal_lib "

@@ -1,16 +1,6 @@
-import importlib
-import sys
 from pathlib import Path
-from types import ModuleType
-from typing import Any, cast
 
-invoke = ModuleType("invoke")
-invoke.__dict__["task"] = lambda *args, **kwargs: lambda function: function
-sys.modules.setdefault(
-    "invoke",
-    invoke,
-)
-git = cast("Any", importlib.import_module("git"))
+from _stool import git
 
 
 def test_link_local_paths_creates_missing_target_parent(tmp_path: Path) -> None:
@@ -45,7 +35,6 @@ def test_create_worktree_repairs_links_for_existing_worktree(
     result = git._create_worktree("feature")
 
     assert result == (
-        f"feature already has a worktree at {worktree}\n"
-        "linked local paths: .env\n"
+        f"feature already has a worktree at {worktree}\nlinked local paths: .env\n"
     )
     assert (worktree / ".env").is_symlink()

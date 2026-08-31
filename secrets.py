@@ -199,4 +199,3 @@ def verify(
             print("Value matches --expect ✔")
         else:
             raise SystemExit("Value does not match --expect ✘")
-
