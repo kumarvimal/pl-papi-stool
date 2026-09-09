@@ -56,6 +56,19 @@ aws sso login --profile default
 The command is read-only. It uses DynamoDB `Query` for a partition and
 `GetItem` when `--sku` is supplied.
 
+## Configure GitHub Packages npm authentication
+
+Configure login shells to retrieve `NPM_GITHUB_TOKEN` dynamically from the
+authenticated GitHub CLI session:
+
+```bash
+st npm.setup-token
+source ~/.zprofile
+```
+
+The command verifies the GitHub CLI login and replaces any literal npm token in
+`~/.zprofile`; it does not persist the token itself.
+
 ## Tests
 
 Tests belong in `_stool/tests/`, separate from command modules. Run the stool
