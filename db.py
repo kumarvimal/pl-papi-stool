@@ -15,10 +15,12 @@ def readonly_prod(ctx, port: int = 15432, duration: str = "1h"):
 
 
 @invoke.task
-def fix_postgres(ctx):
-    ctx.run("brew services stop postgresql@14", pty=True, echo=True)
-    ctx.run("rm /opt/homebrew/var/postgresql@14/postmaster.pid", pty=True, echo=True)
-    ctx.run("brew services start postgresql@14", pty=True, echo=True)
+def fix_postgres(ctx: invoke.Context, version: int = 15) -> None:
+    """Restart Homebrew PostgreSQL after clearing its stale PID file."""
+    package = f"postgresql@{int(version)}"
+    ctx.run(f"brew services stop {package}", pty=True, echo=True)
+    ctx.run(f"rm -f /opt/homebrew/var/{package}/postmaster.pid", pty=True, echo=True)
+    ctx.run(f"brew services start {package}", pty=True, echo=True)
 
 @invoke.task
 def setup_atlas(ctx):
