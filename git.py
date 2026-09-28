@@ -63,7 +63,7 @@ def _safe_worktree_name(root: Path, branch: str) -> str:
 
 
 def _default_worktree_path(root: Path, branch: str) -> Path:
-    return root.parent / _safe_worktree_name(root, branch)
+    return root / ".worktrees" / _safe_worktree_name(root, branch)
 
 
 def _linked_worktree_for_branch(branch: str) -> Path | None:
@@ -150,7 +150,7 @@ def latest(ctx, number: int = DEFAULT_BRANCH_COUNT) -> None:
 
 @invoke.task(aliases=["wt"])
 def worktree(ctx, branch: str, path: str | None = None) -> None:
-    """Create a git worktree for BRANCH"""
+    """Create a git worktree for BRANCH under .worktree by default"""
     sys.stdout.write(_create_worktree(branch, path))
 
 
