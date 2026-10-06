@@ -56,6 +56,25 @@ aws sso login --profile default
 The command is read-only. It uses DynamoDB `Query` for a partition and
 `GetItem` when `--sku` is supplied.
 
+## Peek at dead-letter queue messages
+
+```bash
+st sqs.peek-dlq
+st sqs.peek-dlq --limit 5
+st sqs.peek-dlq --queue-name staging-return-tracking-events-dlq
+```
+
+Defaults to `prod-return-tracking-events-dlq`; override with `--queue-name`
+(must end in `-dlq`). Other defaults are region `eu-central-1`, profile
+`default`, and limit 10; override with `--region`, `--profile`, or `--limit`
+(1–10). The queue URL is resolved from AWS on each invocation.
+
+The command prints one SQS receive response as JSON, including message bodies
+and attributes. It never deletes messages and uses visibility timeout zero,
+so messages remain available. SQS has no true peek: receiving increments the
+receive count and updates receive metadata. A response can contain fewer
+messages than requested, and repeated calls may return the same messages.
+
 ## Configure GitHub Packages npm authentication
 
 Configure login shells to retrieve `NPM_GITHUB_TOKEN` dynamically from the
