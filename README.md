@@ -88,6 +88,17 @@ source ~/.zprofile
 The command verifies the GitHub CLI login and replaces any literal npm token in
 `~/.zprofile`; it does not persist the token itself.
 
+## Clear the local MongoDB log
+
+```bash
+st db.mongo-clear-log
+st db.mongo-clear-log --path /usr/local/var/log/mongodb/mongo.log
+```
+
+Empties the existing log in place so MongoDB can continue writing to it.
+Defaults to the Apple Silicon Homebrew log path. Removes log history only;
+database data is untouched. A missing or inaccessible file raises an error.
+
 ## Tests
 
 Tests belong in `_stool/tests/`, separate from command modules. Run the stool

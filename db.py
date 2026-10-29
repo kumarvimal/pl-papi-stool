@@ -1,4 +1,5 @@
 import shlex
+from pathlib import Path
 
 import invoke
 
@@ -44,3 +45,16 @@ def atlas_stop(ctx):
 def mongo_restart(ctx):
     ctx.run("brew services stop mongodb-community", pty=True)
     ctx.run("brew services start mongodb-community", pty=True)
+
+
+@invoke.task
+def mongo_clear_log(
+    ctx: invoke.Context,
+    path: str = "/opt/homebrew/var/log/mongodb/mongo.log",
+) -> None:
+    """Empty the local MongoDB log in place without touching database data."""
+    log_path = Path(path).expanduser()
+    with log_path.open("r+") as log:
+        size = log_path.stat().st_size
+        log.truncate(0)
+    print(f"Cleared {log_path} ({size / 1024**3:.2f} GiB).")
