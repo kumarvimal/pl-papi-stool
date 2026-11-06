@@ -1,8 +1,9 @@
-"""Product API worktree setup."""
+"""Product API Stool settings."""
 
 from stool.settings import create_env
 
 env = create_env(
+    default_port=8000,
     worktree_symlink=[
         "_stool",
         ".env",
